@@ -7,7 +7,8 @@
 		"start": "webpack serve --open chrome.ext --mode development",
 		"build": "webpack --mode production",
 		"build:watch": "webpack --mode production --watch",
-		"test": "jest"
+		"test": "jest",
+		"prepare": "husky install"
 	},
 	"keywords": [
 		"utils"
@@ -22,6 +23,8 @@
 		"@babel/helper-compilation-targets": "^7.21.4",
 		"@babel/plugin-transform-runtime": "^7.21.4",
 		"@babel/preset-env": "^7.15.0",
+		"@commitlint/cli": "12.1.4",
+		"@commitlint/config-conventional": "12.1.4",
 		"@types/jest": "^29.5.1",
 		"babel-loader": "^8.2.2",
 		"clean-webpack-plugin": "^4.0.0-alpha.0",
@@ -29,6 +32,7 @@
 		"cz-customizable": "^6.3.0",
 		"editor": "^1.0.0",
 		"html-webpack-plugin": "^5.3.2",
+		"husky": "7.0.1",
 		"jest": "^29.5.0",
 		"ts-loader": "^9.2.5",
 		"webpack": "^5.49.0",
