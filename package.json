@@ -1,0 +1,43 @@
+{
+	"name": "alanni-utils",
+	"version": "1.0.0",
+	"description": "Some util functions for JavaScript",
+	"main": "index.js",
+	"scripts": {
+		"start": "webpack serve --open chrome.ext --mode development",
+		"build": "webpack --mode production",
+		"build:watch": "webpack --mode production --watch",
+		"test": "jest"
+	},
+	"keywords": [
+		"utils"
+	],
+	"author": "Alanni",
+	"license": "ISC",
+	"dependencies": {
+		"typescript": "^5.0.4"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.15.0",
+		"@babel/helper-compilation-targets": "^7.21.4",
+		"@babel/plugin-transform-runtime": "^7.21.4",
+		"@babel/preset-env": "^7.15.0",
+		"@types/jest": "^29.5.1",
+		"babel-loader": "^8.2.2",
+		"clean-webpack-plugin": "^4.0.0-alpha.0",
+		"core-js": "^3.16.4",
+		"cz-customizable": "^6.3.0",
+		"editor": "^1.0.0",
+		"html-webpack-plugin": "^5.3.2",
+		"jest": "^29.5.0",
+		"ts-loader": "^9.2.5",
+		"webpack": "^5.49.0",
+		"webpack-cli": "^4.7.2",
+		"webpack-dev-server": "^3.11.2"
+	},
+	"config": {
+		"commitizen": {
+			"path": "node_modules/cz-customizable"
+		}
+	}
+}
