@@ -1,3 +1,15 @@
+## 项目介绍
+
+主要是个人学习练习项目，以及集成一些常用函数工具
+
+运用技术
+
+- yarn
+- jest
+- webpack
+- babel
+- typescript
+
 ## Git提交规范
 
 为了规范git提交内容，提交的时候commit -m “备注的信息”，为了统一，进行了git的规范。
