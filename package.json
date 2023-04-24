@@ -1,6 +1,6 @@
 {
-	"name": "utils",
-	"version": "1.0.0",
+	"name": "alanni-utils",
+	"version": "1.0.1",
 	"description": "Some util functions for JavaScript",
 	"main": "index.js",
 	"scripts": {
