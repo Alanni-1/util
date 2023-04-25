@@ -2,7 +2,7 @@
 	"name": "alanni-utils",
 	"version": "1.0.3",
 	"description": "Some util functions for JavaScript",
-	"main": "index.js",
+	"main": "dist/tools-utils.js",
 	"scripts": {
 		"start": "webpack serve --open chrome.ext --mode development",
 		"build": "webpack --mode production",
