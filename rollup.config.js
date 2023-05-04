@@ -1,16 +1,108 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import typescript from 'rollup-plugin-typescript';
-export default {
-  input: 'src/index.ts', // 打包入口
-  output: { // 打包出口
-    file: 'dist/tools.js', // 最终打包出来的文件路径和文件名，这里是在package.json的browser: 'dist/index.js'字段中配置的
-    format: 'umd', // umd是兼容amd/cjs/iife的通用打包格式，适合浏览器
-    name: 'tools'
+// 引入插件
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import typescript from 'rollup-plugin-typescript2'
+import json from '@rollup/plugin-json'
+import babel from '@rollup/plugin-babel'
+// 用于生成类型声明文件
+import dts from 'rollup-plugin-dts'
+// sass打包
+import postcss from 'rollup-plugin-postcss'
+
+
+// 入口文件
+const entry = 'src/index.ts'
+
+// babel配置
+const babelOptions = {
+  babelHelpers: 'runtime',
+  presets: ["@babel/preset-env"],
+  extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss'],
+  exclude: "**/node_modules/**"
+}
+
+/*
+*  src: rollup.config.json
+*  只保留关键代码，忽略部分同上文
+**/
+
+// 忽略文件
+const externalConfig = [
+  id => /\/__expample__|main.tsx/.test(id), // 组件的本地测试文件，不希望被打包。
+  'react',
+  'react-dom',
+  'classname',
+  'react-is',
+  '**/node_modules/**'
+]
+
+// sass打包
+const processScss = function (context) {
+  return new Promise((resolve, reject) => {
+    sass.compile(
+      {
+        file: context
+      },
+      function (err, result) {
+        if (!err) {
+          resolve(result)
+        } else {
+          reject(result)
+        }
+      }
+    );
+    sass.compile(context, {}).then(
+      function (output) {
+        if (output && output.css) {
+          resolve(output.css)
+        } else {
+          reject({})
+        }
+      },
+      function (err) {
+        reject(err)
+      }
+    )
+  })
+}
+
+// rollup配置
+export default [
+  {
+    // 入口
+    input: entry,
+    // 打包信息
+    output: [
+      { filname: 'index.esm.js', dir: 'dist/es/', format: 'esm' },
+    ],
+    // 插件配置
+    plugins: [
+      // sass打包
+      postcss({
+        extract: true,
+        minimize: true,
+        extensions: ['.css', '.scss'],
+        process: processScss
+      }),
+      // 可使用 `import {module} from './file'` 替换 `import {module} from './file/index.js`
+      resolve(),
+      // 支持commonjs，包括第三方引入使用到commonjs语法
+      commonjs(),
+      // typescript支持
+      typescript({
+        tsconfig: 'tsconfig.json'
+      }),
+      // 支持读取json文件
+      json(),
+      // babel
+      babel(babelOptions)
+    ],
+    // 忽略文件
+    external: externalConfig
   },
-  plugins: [ // 打包插件
-    resolve(), // 查找和打包node_modules中的第三方模块
-    commonjs(), // 将 CommonJS 转换成 ES2015 模块供 Rollup 处理
-    typescript() // 解析TypeScript
-  ]
-};
+  {
+    input: entry,
+    output: [{ filname: 'index.d.ts', dir: 'dist/es/type', format: 'esm' }],
+    plugins: [dts()]
+  }
+]
