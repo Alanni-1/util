@@ -67,7 +67,7 @@ const processScss = function (context) {
 }
 
 // rollup配置
-module.exports [
+module.exports = [
   {
     // 入口
     input: entry,
@@ -103,6 +103,6 @@ module.exports [
   {
     input: entry,
     output: [{ filname: 'index.d.ts', dir: 'dist/es/type', format: 'esm' }],
-    plugins: [dts()]
+    plugins: [dts.default()]
   }
 ]
