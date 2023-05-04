@@ -1,6 +1,6 @@
 {
 	"name": "alanni-utils",
-	"version": "1.0.6",
+	"version": "1.0.10",
 	"description": "Some util functions for JavaScript",
 	"main": "dist/tools-utils.js",
 	"scripts": {
@@ -11,7 +11,7 @@
 		"prepare": "husky install",
 		"build:rollup": "npm run clear && rollup -c",
 		"clear": "rimraf ./dist",
-		"publish": "npm run build:rollup && npm version patch && npm publish"
+		"pl": "npm run build:rollup && npm version patch && npm publish"
 	},
 	"keywords": [
 		"utils"
