@@ -1,13 +1,13 @@
 // 引入插件
-import resolve from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
-import typescript from 'rollup-plugin-typescript2'
-import json from '@rollup/plugin-json'
-import babel from '@rollup/plugin-babel'
+const resolve = require('@rollup/plugin-node-resolve')
+const commonjs = require('@rollup/plugin-commonjs')
+const typescript = require('rollup-plugin-typescript2')
+const json = require('@rollup/plugin-json')
+const babel = require('@rollup/plugin-babel')
 // 用于生成类型声明文件
-import dts from 'rollup-plugin-dts'
+const dts = require('rollup-plugin-dts')
 // sass打包
-import postcss from 'rollup-plugin-postcss'
+const postcss = require('rollup-plugin-postcss')
 
 
 // 入口文件
@@ -67,7 +67,7 @@ const processScss = function (context) {
 }
 
 // rollup配置
-export default [
+module.exports [
   {
     // 入口
     input: entry,
