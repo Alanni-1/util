@@ -11,7 +11,7 @@
 		"prepare": "husky install",
 		"build:rollup": "npm run clear && rollup -c",
 		"clear": "rimraf ./dist",
-		"pl": "npm run build:rollup && npm version patch && npm publish"
+		"release": "npm run build:rollup && npm version patch && npm publish"
 	},
 	"keywords": [
 		"utils"
